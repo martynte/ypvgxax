@@ -1,0 +1,443 @@
+<h1> Mobile Article Aggregator Platform (MAP)</h1><br><br><hr><br>
+
+Mobile Article Aggregator Platform 是一个面向移动端内容聚合与分发场景的开源技术资源导航站。该项目定位于为开发者、技术研究人员以及内容运营团队提供结构化的移动端文章链接索引与快速检索能力，解决移动端技术文章分散、检索效率低下、域名迁移频繁导致链接失效等实际问题。
+
+项目本身不存储任何文章内容，仅作为外链元数据的索引层与展示层，通过静态化的资源列表与分类标签体系，帮助用户在海量移动端技术文档中快速定位目标资源。目标用户包括移动端开发工程师、全栈技术学习者、技术博客维护者以及企业内部知识库管理人员。
+
+<h2>功能概览</h2><br>
+
+<p><h3>海量链接索引管理</h3>：支持对超过 250 条移动端技术文章链接进行集中存储与分类展示，覆盖多种技术子领域。</p>
+
+<p><h3>静态化资源列表呈现</h3>：所有链接以纯 Markdown 形式维护于项目仓库中，无需数据库依赖，便于版本控制与协作编辑。</p>
+
+<p><h3>分类标签体系</h3>：根据文章主题、技术栈或访问热度对链接进行逻辑分组，降低用户筛选成本。</p>
+
+<p><h3>快速检索入口</h3>：提供基于文章 ID 或路径关键字的本地搜索功能，提升链接定位速度。</p>
+
+<p><h3>链接状态检测工具</h3>：集成可选的定时检测脚本，自动标记可能失效或响应异常的链接，保障资源列表的有效性。</p>
+
+<p><h3>移动端适配展示</h3>：前端模板针对手机和平板设备进行优化，确保在移动浏览器上获得良好的阅读与导航体验。</p>
+
+<p><h3>开源协作扩展机制</h3>：支持社区用户通过提交 Issue 或 Pull Request 的方式新增、更新或删除链接条目，保持资源列表的时效性。</p>
+
+<p><h3>轻量化部署能力</h3>：项目整体基于静态文件生成，可托管于任何支持 HTTP 服务的平台，包括 GitHub Pages、Cloudflare Pages 或自建 Nginx 服务器。</p>
+
+<h2>应用场景</h2><br>
+
+技术团队内部知识库建设：企业内部的技术团队可将本项目作为基础框架，整理团队内部积累的移动端技术文章链接，形成统一的知识索引入口，减少重复的文档查找工作。
+
+个人技术博客的友情链接扩展：独立技术博客作者可利用本项目的资源列表作为博客侧边栏的补充，为读者提供更多外部阅读资源，同时降低博客维护外链的复杂度。
+
+技术社区的内容聚合展示：技术社区运营方可基于本项目快速搭建文章推荐专区，将社区内的高质量技术帖按分类进行外链汇总，提升社区内容的曝光率与复用率。
+
+技术培训课程的参考资料索引：培训机构或技术讲师可将本项目作为课程参考资料库，将课程中涉及的外部延伸阅读链接统一整理到项目列表中，方便学员课后查阅。
+
+开源项目文档的关联资源导航：开源项目维护者可在项目文档中引用本项目的资源列表，为使用者提供相关的技术背景阅读材料，丰富项目的辅助信息生态。
+
+<h2>快速开始</h2><br>
+
+以下步骤将帮助您在本地环境快速部署并运行本项目的静态站点。
+
+# 1. 克隆项目仓库到本地
+git clone https://github.com/example/mobile-article-aggregator.git
+cd mobile-article-aggregator
+
+# 2. 安装项目依赖（基于 Node.js 环境）
+npm install
+
+# 3. 运行本地开发服务器，默认监听端口 3000
+npm run dev
+
+执行上述命令后，在浏览器中访问 `http://localhost:3000` 即可查看资源列表页面。如需构建生产环境静态文件，请执行 `npm run build`，生成的静态资源位于 `dist` 目录下。
+
+<h2>安装要求</h2><br>
+
+| 依赖项 | 必需版本 | 说明 |
+|--------|----------|------|
+| Node.js | 18.0 及以上 | 项目构建工具与开发服务器运行环境 |
+| npm | 8.0 及以上 | Node.js 包管理器，用于安装项目依赖 |
+| Git | 2.30 及以上 | 用于克隆仓库与版本管理 |
+| 现代浏览器 | Chrome 90+ / Firefox 88+ | 前端页面访问与调试支持 |
+| HTTP 服务器 | 任意静态文件服务 | 生产环境托管构建后的静态文件，如 Nginx、Caddy 或 Apache |
+| 可选：Shell 环境 | Bash 4.0+ | 运行链接状态检测脚本（位于 scripts/ 目录） |
+
+<h2>文档导航</h2><br>
+
+| 层面 | 目录 | 回答的问题 |
+|------|------|------------|
+| 用户入门 | docs/getting-started.md | 如何使用本项目的资源列表？如何通过分类标签快速找到所需文章？ |
+| 维护者指南 | docs/maintenance.md | 如何新增、修改或删除链接条目？链接格式校验规则是什么？ |
+| 开发贡献 | docs/contributing.md | 如何搭建开发环境？代码风格规范与提交信息格式要求有哪些？ |
+| 部署运维 | docs/deployment.md | 如何将站点部署到生产服务器？如何配置自定义域名与 HTTPS？ |
+
+<h2>资源列表</h2><br>
+
+<h3>移动端技术文章链接汇总</h3><br>
+
+以下列表收录了本批次（第 8/24 批，共300 个资源链接）的全部移动端文章外链。所有链接均按照用户提供的原始格式原样呈现，未做任何协议、域名或路径的改动。
+
+m.2019zf.cn/Article/details/83322523.sHtML<br>
+m.2019zf.cn/Article/details/75682058.sHtML<br>
+m.2019zf.cn/Article/details/67298564.sHtML<br>
+m.2019zf.cn/Article/details/86281332.sHtML<br>
+m.2019zf.cn/Article/details/27849830.sHtML<br>
+m.2019zf.cn/Article/details/60248021.sHtML<br>
+m.2019zf.cn/Article/details/75707088.sHtML<br>
+m.2019zf.cn/Article/details/09144975.sHtML<br>
+m.2019zf.cn/Article/details/15584036.sHtML<br>
+m.2019zf.cn/Article/details/53523049.sHtML<br>
+m.2019zf.cn/Article/details/31045113.sHtML<br>
+m.2019zf.cn/Article/details/24357055.sHtML<br>
+m.2019zf.cn/Article/details/80913597.sHtML<br>
+m.2019zf.cn/Article/details/05482134.sHtML<br>
+m.2019zf.cn/Article/details/50550179.sHtML<br>
+m.2019zf.cn/Article/details/09464523.sHtML<br>
+m.2019zf.cn/Article/details/57268219.sHtML<br>
+m.2019zf.cn/Article/details/33767585.sHtML<br>
+m.2019zf.cn/Article/details/24927562.sHtML<br>
+m.2019zf.cn/Article/details/84935374.sHtML<br>
+m.2019zf.cn/Article/details/58358709.sHtML<br>
+m.2019zf.cn/Article/details/01092284.sHtML<br>
+m.2019zf.cn/Article/details/89847227.sHtML<br>
+m.2019zf.cn/Article/details/81782162.sHtML<br>
+m.2019zf.cn/Article/details/71708006.sHtML<br>
+m.2019zf.cn/Article/details/61329864.sHtML<br>
+m.2019zf.cn/Article/details/31728798.sHtML<br>
+m.2019zf.cn/Article/details/92846679.sHtML<br>
+m.2019zf.cn/Article/details/28352614.sHtML<br>
+m.2019zf.cn/Article/details/18018756.sHtML<br>
+m.2019zf.cn/Article/details/57284661.sHtML<br>
+m.2019zf.cn/Article/details/78633990.sHtML<br>
+m.2019zf.cn/Article/details/91309883.sHtML<br>
+m.2019zf.cn/Article/details/01695225.sHtML<br>
+m.2019zf.cn/Article/details/75363618.sHtML<br>
+m.2019zf.cn/Article/details/57634907.sHtML<br>
+m.2019zf.cn/Article/details/54332180.sHtML<br>
+m.2019zf.cn/Article/details/35406253.sHtML<br>
+m.2019zf.cn/Article/details/13254019.sHtML<br>
+m.2019zf.cn/Article/details/42106958.sHtML<br>
+m.2019zf.cn/Article/details/74037345.sHtML<br>
+m.2019zf.cn/Article/details/31392925.sHtML<br>
+m.2019zf.cn/Article/details/13023637.sHtML<br>
+m.2019zf.cn/Article/details/46557886.sHtML<br>
+m.2019zf.cn/Article/details/29173304.sHtML<br>
+m.2019zf.cn/Article/details/11021752.sHtML<br>
+m.2019zf.cn/Article/details/89551486.sHtML<br>
+m.2019zf.cn/Article/details/96263585.sHtML<br>
+m.2019zf.cn/Article/details/51075661.sHtML<br>
+m.2019zf.cn/Article/details/71609214.sHtML<br>
+m.2019zf.cn/Article/details/90067660.sHtML<br>
+m.2019zf.cn/Article/details/54829252.sHtML<br>
+m.2019zf.cn/Article/details/27228001.sHtML<br>
+m.2019zf.cn/Article/details/12599276.sHtML<br>
+m.2019zf.cn/Article/details/86876688.sHtML<br>
+m.2019zf.cn/Article/details/66814411.sHtML<br>
+m.2019zf.cn/Article/details/73087743.sHtML<br>
+m.2019zf.cn/Article/details/89832319.sHtML<br>
+m.2019zf.cn/Article/details/93297617.sHtML<br>
+m.2019zf.cn/Article/details/75577050.sHtML<br>
+m.2019zf.cn/Article/details/62779693.sHtML<br>
+m.2019zf.cn/Article/details/49892808.sHtML<br>
+m.2019zf.cn/Article/details/80699080.sHtML<br>
+m.2019zf.cn/Article/details/48962563.sHtML<br>
+m.2019zf.cn/Article/details/45147930.sHtML<br>
+m.2019zf.cn/Article/details/08006581.sHtML<br>
+m.2019zf.cn/Article/details/75738850.sHtML<br>
+m.2019zf.cn/Article/details/82176182.sHtML<br>
+m.2019zf.cn/Article/details/57910016.sHtML<br>
+m.2019zf.cn/Article/details/83861479.sHtML<br>
+m.2019zf.cn/Article/details/94970036.sHtML<br>
+m.2019zf.cn/Article/details/49644241.sHtML<br>
+m.2019zf.cn/Article/details/28737662.sHtML<br>
+m.2019zf.cn/Article/details/13797457.sHtML<br>
+m.2019zf.cn/Article/details/75446093.sHtML<br>
+m.2019zf.cn/Article/details/32098726.sHtML<br>
+m.2019zf.cn/Article/details/94292124.sHtML<br>
+m.2019zf.cn/Article/details/20246524.sHtML<br>
+m.2019zf.cn/Article/details/71367152.sHtML<br>
+m.2019zf.cn/Article/details/76218026.sHtML<br>
+m.2019zf.cn/Article/details/35410748.sHtML<br>
+m.2019zf.cn/Article/details/61967144.sHtML<br>
+m.2019zf.cn/Article/details/27852541.sHtML<br>
+m.2019zf.cn/Article/details/21346929.sHtML<br>
+m.2019zf.cn/Article/details/96595404.sHtML<br>
+m.2019zf.cn/Article/details/34096176.sHtML<br>
+m.2019zf.cn/Article/details/98730293.sHtML<br>
+m.2019zf.cn/Article/details/68884004.sHtML<br>
+m.2019zf.cn/Article/details/12953677.sHtML<br>
+m.2019zf.cn/Article/details/38947952.sHtML<br>
+m.2019zf.cn/Article/details/23965255.sHtML<br>
+m.2019zf.cn/Article/details/31287085.sHtML<br>
+m.2019zf.cn/Article/details/87844025.sHtML<br>
+m.2019zf.cn/Article/details/16800664.sHtML<br>
+m.2019zf.cn/Article/details/17028465.sHtML<br>
+m.2019zf.cn/Article/details/27940721.sHtML<br>
+m.2019zf.cn/Article/details/48102503.sHtML<br>
+m.2019zf.cn/Article/details/72465401.sHtML<br>
+m.2019zf.cn/Article/details/46610123.sHtML<br>
+m.2019zf.cn/Article/details/65747043.sHtML<br>
+m.2019zf.cn/Article/details/19541672.sHtML<br>
+m.2019zf.cn/Article/details/49410146.sHtML<br>
+m.2019zf.cn/Article/details/49714761.sHtML<br>
+m.2019zf.cn/Article/details/76810775.sHtML<br>
+m.2019zf.cn/Article/details/90247387.sHtML<br>
+m.2019zf.cn/Article/details/39284428.sHtML<br>
+m.2019zf.cn/Article/details/98064870.sHtML<br>
+m.2019zf.cn/Article/details/09846169.sHtML<br>
+m.2019zf.cn/Article/details/27968818.sHtML<br>
+m.2019zf.cn/Article/details/54646928.sHtML<br>
+m.2019zf.cn/Article/details/20279279.sHtML<br>
+m.2019zf.cn/Article/details/53913376.sHtML<br>
+m.2019zf.cn/Article/details/02174235.sHtML<br>
+m.2019zf.cn/Article/details/42407699.sHtML<br>
+m.2019zf.cn/Article/details/77591892.sHtML<br>
+m.2019zf.cn/Article/details/35409600.sHtML<br>
+m.2019zf.cn/Article/details/89132510.sHtML<br>
+m.2019zf.cn/Article/details/67483661.sHtML<br>
+m.2019zf.cn/Article/details/32195886.sHtML<br>
+m.2019zf.cn/Article/details/27447755.sHtML<br>
+m.2019zf.cn/Article/details/24648613.sHtML<br>
+m.2019zf.cn/Article/details/27965847.sHtML<br>
+m.2019zf.cn/Article/details/27638148.sHtML<br>
+m.2019zf.cn/Article/details/31076611.sHtML<br>
+m.2019zf.cn/Article/details/83032630.sHtML<br>
+m.2019zf.cn/Article/details/27698524.sHtML<br>
+m.2019zf.cn/Article/details/59290285.sHtML<br>
+m.2019zf.cn/Article/details/38145398.sHtML<br>
+m.2019zf.cn/Article/details/91803546.sHtML<br>
+m.2019zf.cn/Article/details/34213044.sHtML<br>
+m.2019zf.cn/Article/details/63899896.sHtML<br>
+m.2019zf.cn/Article/details/72110364.sHtML<br>
+m.2019zf.cn/Article/details/91309521.sHtML<br>
+m.2019zf.cn/Article/details/43879270.sHtML<br>
+m.2019zf.cn/Article/details/32687787.sHtML<br>
+m.2019zf.cn/Article/details/02179342.sHtML<br>
+m.2019zf.cn/Article/details/17990747.sHtML<br>
+m.2019zf.cn/Article/details/05834368.sHtML<br>
+m.2019zf.cn/Article/details/64383876.sHtML<br>
+m.2019zf.cn/Article/details/65031035.sHtML<br>
+m.2019zf.cn/Article/details/19879792.sHtML<br>
+m.2019zf.cn/Article/details/09474064.sHtML<br>
+m.2019zf.cn/Article/details/94694908.sHtML<br>
+m.2019zf.cn/Article/details/34477047.sHtML<br>
+m.2019zf.cn/Article/details/02474526.sHtML<br>
+m.2019zf.cn/Article/details/87282727.sHtML<br>
+m.2019zf.cn/Article/details/83659700.sHtML<br>
+m.2019zf.cn/Article/details/16354870.sHtML<br>
+m.2019zf.cn/Article/details/47580659.sHtML<br>
+m.2019zf.cn/Article/details/61247820.sHtML<br>
+m.2019zf.cn/Article/details/94468436.sHtML<br>
+m.2019zf.cn/Article/details/86493206.sHtML<br>
+m.2019zf.cn/Article/details/94726181.sHtML<br>
+m.2019zf.cn/Article/details/72202710.sHtML<br>
+m.2019zf.cn/Article/details/54750903.sHtML<br>
+m.2019zf.cn/Article/details/17684410.sHtML<br>
+m.2019zf.cn/Article/details/04912883.sHtML<br>
+m.2019zf.cn/Article/details/78065267.sHtML<br>
+m.2019zf.cn/Article/details/09443474.sHtML<br>
+m.2019zf.cn/Article/details/83281360.sHtML<br>
+m.2019zf.cn/Article/details/94435145.sHtML<br>
+m.2019zf.cn/Article/details/12463216.sHtML<br>
+m.2019zf.cn/Article/details/89861482.sHtML<br>
+m.2019zf.cn/Article/details/37047762.sHtML<br>
+m.2019zf.cn/Article/details/84092480.sHtML<br>
+m.2019zf.cn/Article/details/64308255.sHtML<br>
+m.2019zf.cn/Article/details/46270374.sHtML<br>
+m.2019zf.cn/Article/details/54195690.sHtML<br>
+m.2019zf.cn/Article/details/59510115.sHtML<br>
+m.2019zf.cn/Article/details/49849901.sHtML<br>
+m.2019zf.cn/Article/details/41081778.sHtML<br>
+m.2019zf.cn/Article/details/46578544.sHtML<br>
+m.2019zf.cn/Article/details/38742662.sHtML<br>
+m.2019zf.cn/Article/details/67987001.sHtML<br>
+m.2019zf.cn/Article/details/57394102.sHtML<br>
+m.2019zf.cn/Article/details/75999908.sHtML<br>
+m.2019zf.cn/Article/details/02432342.sHtML<br>
+m.2019zf.cn/Article/details/57943411.sHtML<br>
+m.2019zf.cn/Article/details/59366691.sHtML<br>
+m.2019zf.cn/Article/details/49467050.sHtML<br>
+m.2019zf.cn/Article/details/83786554.sHtML<br>
+m.2019zf.cn/Article/details/13548799.sHtML<br>
+m.2019zf.cn/Article/details/01702936.sHtML<br>
+m.2019zf.cn/Article/details/53133333.sHtML<br>
+m.2019zf.cn/Article/details/50380517.sHtML<br>
+m.2019zf.cn/Article/details/72409207.sHtML<br>
+m.2019zf.cn/Article/details/16513044.sHtML<br>
+m.2019zf.cn/Article/details/01030485.sHtML<br>
+m.2019zf.cn/Article/details/80988465.sHtML<br>
+m.2019zf.cn/Article/details/06245592.sHtML<br>
+m.2019zf.cn/Article/details/35741485.sHtML<br>
+m.2019zf.cn/Article/details/70214388.sHtML<br>
+m.2019zf.cn/Article/details/57241625.sHtML<br>
+m.2019zf.cn/Article/details/35802132.sHtML<br>
+m.2019zf.cn/Article/details/90240742.sHtML<br>
+m.2019zf.cn/Article/details/76803568.sHtML<br>
+m.2019zf.cn/Article/details/94665115.sHtML<br>
+m.2019zf.cn/Article/details/26547209.sHtML<br>
+m.2019zf.cn/Article/details/72427850.sHtML<br>
+m.2019zf.cn/Article/details/89163651.sHtML<br>
+m.2019zf.cn/Article/details/31091796.sHtML<br>
+m.2019zf.cn/Article/details/45057771.sHtML<br>
+m.2019zf.cn/Article/details/46473586.sHtML<br>
+m.2019zf.cn/Article/details/20623562.sHtML<br>
+m.2019zf.cn/Article/details/51426000.sHtML<br>
+m.2019zf.cn/Article/details/29439607.sHtML<br>
+m.2019zf.cn/Article/details/17580262.sHtML<br>
+m.2019zf.cn/Article/details/79488481.sHtML<br>
+m.2019zf.cn/Article/details/79810676.sHtML<br>
+m.2019zf.cn/Article/details/43952888.sHtML<br>
+m.2019zf.cn/Article/details/92493583.sHtML<br>
+m.2019zf.cn/Article/details/71764559.sHtML<br>
+m.2019zf.cn/Article/details/48994111.sHtML<br>
+m.2019zf.cn/Article/details/49884111.sHtML<br>
+m.2019zf.cn/Article/details/61371365.sHtML<br>
+m.2019zf.cn/Article/details/01698777.sHtML<br>
+m.2019zf.cn/Article/details/79583306.sHtML<br>
+m.2019zf.cn/Article/details/80263074.sHtML<br>
+m.2019zf.cn/Article/details/76565292.sHtML<br>
+m.2019zf.cn/Article/details/95469687.sHtML<br>
+m.2019zf.cn/Article/details/97225453.sHtML<br>
+m.2019zf.cn/Article/details/68181864.sHtML<br>
+m.2019zf.cn/Article/details/39455602.sHtML<br>
+m.2019zf.cn/Article/details/38301150.sHtML<br>
+m.2019zf.cn/Article/details/52116631.sHtML<br>
+m.2019zf.cn/Article/details/72427046.sHtML<br>
+m.2019zf.cn/Article/details/56244184.sHtML<br>
+m.2019zf.cn/Article/details/60587674.sHtML<br>
+m.2019zf.cn/Article/details/50587525.sHtML<br>
+m.2019zf.cn/Article/details/47109889.sHtML<br>
+m.2019zf.cn/Article/details/72579129.sHtML<br>
+m.2019zf.cn/Article/details/20641732.sHtML<br>
+m.2019zf.cn/Article/details/57069155.sHtML<br>
+m.2019zf.cn/Article/details/24021048.sHtML<br>
+m.2019zf.cn/Article/details/46927000.sHtML<br>
+m.2019zf.cn/Article/details/73881044.sHtML<br>
+m.2019zf.cn/Article/details/93264000.sHtML<br>
+m.2019zf.cn/Article/details/49096115.sHtML<br>
+m.2019zf.cn/Article/details/65679332.sHtML<br>
+m.2019zf.cn/Article/details/94076299.sHtML<br>
+m.2019zf.cn/Article/details/08689805.sHtML<br>
+m.2019zf.cn/Article/details/37666795.sHtML<br>
+m.2019zf.cn/Article/details/85976801.sHtML<br>
+m.2019zf.cn/Article/details/18657093.sHtML<br>
+m.2019zf.cn/Article/details/54709876.sHtML<br>
+m.2019zf.cn/Article/details/60558140.sHtML<br>
+m.2019zf.cn/Article/details/80527262.sHtML<br>
+m.2019zf.cn/Article/details/86808810.sHtML<br>
+m.2019zf.cn/Article/details/17451720.sHtML<br>
+m.2019zf.cn/Article/details/46186013.sHtML<br>
+m.2019zf.cn/Article/details/82321015.sHtML<br>
+m.2019zf.cn/Article/details/50946321.sHtML<br>
+m.2019zf.cn/Article/details/38305805.sHtML<br>
+m.2019zf.cn/Article/details/13871042.sHtML<br>
+m.2019zf.cn/Article/details/30504325.sHtML<br>
+m.2019zf.cn/Article/details/98230582.sHtML<br>
+m.2019zf.cn/Article/details/32017600.sHtML<br>
+m.2019zf.cn/Article/details/06255592.sHtML<br>
+m.2019zf.cn/Article/details/93560383.sHtML<br>
+m.2019zf.cn/Article/details/98924302.sHtML<br>
+m.2019zf.cn/Article/details/17526313.sHtML<br>
+m.2019zf.cn/Article/details/05743214.sHtML<br>
+m.2019zf.cn/Article/details/76517173.sHtML<br>
+m.2019zf.cn/Article/details/27059500.sHtML<br>
+m.2019zf.cn/Article/details/73583815.sHtML<br>
+m.2019zf.cn/Article/details/66177630.sHtML<br>
+m.2019zf.cn/Article/details/57023212.sHtML<br>
+m.2019zf.cn/Article/details/27558068.sHtML<br>
+m.2019zf.cn/Article/details/71314676.sHtML<br>
+m.2019zf.cn/Article/details/18763879.sHtML<br>
+m.2019zf.cn/Article/details/94273633.sHtML<br>
+m.2019zf.cn/Article/details/71247699.sHtML<br>
+m.2019zf.cn/Article/details/37577748.sHtML<br>
+m.2019zf.cn/Article/details/83108880.sHtML<br>
+m.2019zf.cn/Article/details/75651786.sHtML<br>
+m.2019zf.cn/Article/details/24358357.sHtML<br>
+m.2019zf.cn/Article/details/93438849.sHtML<br>
+m.2019zf.cn/Article/details/79003311.sHtML<br>
+m.2019zf.cn/Article/details/30504341.sHtML<br>
+m.2019zf.cn/Article/details/63842206.sHtML<br>
+m.2019zf.cn/Article/details/90948307.sHtML<br>
+m.2019zf.cn/Article/details/46307848.sHtML<br>
+m.2019zf.cn/Article/details/02475569.sHtML<br>
+m.2019zf.cn/Article/details/12589784.sHtML<br>
+m.2019zf.cn/Article/details/66691436.sHtML<br>
+m.2019zf.cn/Article/details/75250121.sHtML<br>
+m.2019zf.cn/Article/details/55141308.sHtML<br>
+m.2019zf.cn/Article/details/31114799.sHtML<br>
+m.2019zf.cn/Article/details/19841891.sHtML<br>
+m.2019zf.cn/Article/details/05318955.sHtML<br>
+m.2019zf.cn/Article/details/96335244.sHtML<br>
+m.2019zf.cn/Article/details/86417274.sHtML<br>
+m.2019zf.cn/Article/details/98765517.sHtML<br>
+m.2019zf.cn/Article/details/23770935.sHtML<br>
+m.2019zf.cn/Article/details/12654265.sHtML<br>
+m.2019zf.cn/Article/details/99114279.sHtML<br>
+m.2019zf.cn/Article/details/66170024.sHtML<br>
+m.2019zf.cn/Article/details/01610930.sHtML<br>
+m.2019zf.cn/Article/details/65764876.sHtML<br>
+
+<h2>项目结构</h2><br>
+
+项目目录采用模块化分层设计，便于维护与扩展。各子目录职责清晰，核心资源列表与前端展示逻辑分离。
+
+
+mobile-article-aggregator/
+├── public/                          # 静态资源目录，无需构建直接复制
+│   ├── favicon.ico                  # 站点图标文件
+│   └── robots.txt                   # 搜索引擎爬虫规则，屏蔽非生产环境路径
+├── src/                             # 源代码主目录
+│   ├── assets/                      # 前端资源文件（图片、字体、全局样式）
+│   │   ├── images/                  # 项目用到的矢量图与位图素材
+│   │   └── styles/                  # 全局基础样式与 CSS 变量定义
+│   ├── components/                  # 可复用的 UI 组件
+│   │   ├── LinkList.vue             # 链接列表核心渲染组件，支持分页与过滤
+│   │   ├── SearchBar.vue            # 关键字搜索输入组件
+│   │   └── CategoryFilter.vue       # 分类标签筛选组件
+│   ├── data/                        # 数据层，存放静态链接资源列表
+│   │   ├── links.json               # 主链接索引文件，包含全部 250 条记录
+│   │   └── categories.json          # 分类映射表，定义标签与链接 ID 的对应关系
+│   ├── layouts/                     # 页面布局模板
+│   │   ├── default.vue              # 默认两栏布局（侧边栏 + 主内容区）
+│   │   └── full-width.vue           # 全宽布局，用于搜索与统计页面
+│   ├── pages/                       # 路由页面入口
+│   │   ├── index.vue                # 首页，展示全部资源列表与分类概览
+│   │   ├── about.vue                # 项目介绍与使用说明页面
+│   │   └── stats.vue                # 链接统计信息页面（总数、分类分布）
+│   ├── utils/                       # 工具函数库
+│   │   ├── validator.js             # 链接格式校验与规范化工具
+│   │   └── filter.js                # 数组过滤与排序辅助函数
+│   └── main.js                      # 应用入口文件，初始化 Vue 实例与插件
+├── scripts/                         # 运维与辅助脚本
+│   ├── check-links.sh               # 批量检测链接可用性的 Bash 脚本
+│   └── generate-sitemap.js          # 生成站点地图 XML 文件的 Node 脚本
+├── tests/                           # 单元测试与集成测试
+│   ├── unit/                        # 组件与函数的单元测试用例
+│   └── e2e/                         # 端到端测试脚本（基于 Playwright）
+├── .gitignore                       # Git 版本忽略规则文件
+├── package.json                     # Node.js 项目依赖与脚本定义
+├── README.md                        # 项目说明文档（本文件）
+├── LICENSE                          # MIT 许可证全文
+└── vite.config.js                   # Vite 构建工具配置文件
+
+
+<h2> 贡献指南</h2><br>
+
+我们欢迎社区开发者以多种形式参与本项目的维护与改进。所有贡献需遵守项目行为准则，并按照以下流程操作。
+
+第一步：查阅现有 Issue 与 Pull Request。在提交新贡献之前，请先浏览 GitHub 上的现有议题，确认无人正在处理相同问题或功能请求，避免重复劳动。
+
+第二步：Fork 项目并创建功能分支。将本仓库 Fork 至个人账号下，然后基于 `main` 分支创建一个新的分支，分支命名建议采用 `feature/功能描述` 或 `fix/问题简述` 的格式。
+
+第三步：完成代码或文档修改。请遵循项目既定的代码风格（ESLint 配置）与提交信息规范（使用 Conventional Commits 格式）。若涉及链接列表的增删，请同步更新 `src/data/links.json` 中的对应条目。
+
+第四步：编写或更新测试用例。对于新增的功能或修复的缺陷，请在 `tests/` 目录下补充相应的单元测试或端到端测试，确保代码覆盖率不下降。
+
+第五步：提交 Pull Request。推送本地分支到远程仓库后，向本项目的 `main` 分支发起 Pull Request，并在描述中清晰说明修改内容、动机以及相关 Issue 编号。项目维护者会在三个工作日内进行审阅。
+
+<h2>常见问题</h2><br>
+
+问：如何快速判断某条链接是否仍然有效？
+
+答：项目根目录下的 `scripts/check
+
+> 外链数量: 350 | 生成时间:2026-09-2402:24:49
